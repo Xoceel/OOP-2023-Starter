@@ -41,4 +41,11 @@ public class DANI extends PApplet {
         textAlign(CENTER, CENTER);
         
 	}
+
+
+	// above is orginial methods
+	public void loadFile() {
+		
+	}
+
 }
