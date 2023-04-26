@@ -11,6 +11,10 @@ public class Word {
         this.fields = fields;
     }
 
+    public Word(String word) {
+        this.word = word;
+    }
+
     public String getWord() {
         return word;
     }

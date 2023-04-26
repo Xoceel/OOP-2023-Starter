@@ -8,7 +8,7 @@ public class DANI extends PApplet {
 
 	String[] splits;
 	String[] lines;
-	Word[] words;
+	Word[] words = new Word[10];
 	ArrayList<Follow> fields;
 	
 
@@ -33,7 +33,7 @@ public class DANI extends PApplet {
 	public void keyPressed() {
 		if(key == '0') {
 		loadFile();
-
+		printModel();
 		}
 	}
 
@@ -49,23 +49,19 @@ public class DANI extends PApplet {
         
 	}
 
+	int splitsCount;
 
 	// above is orginial methods
 	public void loadFile() {
 		lines = loadStrings("small.txt"); // Load a text file into a String array]
 		fields = new ArrayList<Follow>();
+
 		for (int i = 0; i < lines.length; i++) {
 			lines[i] = lines[i].replaceAll("[^\\w\\s]",""); // Remove punction characters
 			lines[i] = lines[i].toLowerCase(); // Convert a string to lower case 
 			splits = split(lines[i], ' '); // Split a string into an array of words
 			for(int j = 0; j < splits.length; j ++) {
-
-				while(!findWord(splits[j])) {
-					fields.get(i).word = splits[j+1];
-					fields.get(i).count++;
-
-					words[j] = new Word(splits[j], fields);
-				}
+					words[j] = new Word(splits[j]);
 			}
 
 		}
@@ -73,12 +69,18 @@ public class DANI extends PApplet {
 
 
 	public void printModel() {
-		for(int i = 0; i < splits.length; i++) {
-			System.out.println(splits[i]);
+		for(int i = 0; i < words.length; i++) {
+			int x = 0;
+			System.out.println(words.length);
+			while (words[i].word != null && x == 0) {
+				System.out.println(words[i].word);
+				x = 1;
+
+			}
 		}
 	}
 	public boolean findWord(String str) {
-		for (int i = 0; i < words.length; i++) {
+		for (int i = 0; i < lines.length; i++) {
 			if (str.equals(words[i].word)){
 				return true;
 			}
